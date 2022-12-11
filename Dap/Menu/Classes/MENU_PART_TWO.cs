@@ -63,6 +63,7 @@ internal class MENU_PART_TWO : IMenu
                     break;
                 case ("6"):
                     Console.WriteLine();
+                    await PRINT_QUERIES.Print(new PrintSpecificBuyerInSpecificCountry(), connection);
                     break;
                 case ("7"):
                     Console.WriteLine();

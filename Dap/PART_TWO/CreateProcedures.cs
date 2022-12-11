@@ -135,24 +135,29 @@ internal class CreateProcedures
             Console.WriteLine(e.Message);
         }
 
-        // Створення процедури [SpecificBuyerInSpecificContry]
+        // Створення процедури [SpecificBuyerInSpecificCountry]
         // Відобразити конкретного покупця конкретної країни
         try
         {
             query =
             @"
-                CREATE PROCEDURE SpecificBuyerInSpecificContry
+                CREATE PROCEDURE SpecificBuyerInSpecificCountry
                 @Name NVARCHAR(50),
-                @Country NVARCHAR
+                @Country NVARCHAR(30)
                 AS
-                    SELECT A.[ID покупця], A.ПІБ, A.[Дата народження], A.Email, A.[ID країни], A.[ID міста]
+                    SELECT  A.[ID покупця] AS [ID_Buyer],
+                            A.ПІБ AS [Name],
+                            A.[Дата народження] AS [Birthday],
+                            A.Email AS [Email],
+                            A.[ID країни] AS [ID_Country],
+                            A.[ID міста] AS [ID_City]
                     FROM [Покупці] A, [Країни] B
                     WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE '%@Name%' AND B.[Назва країни] = @Country
             ";
             command.CommandText = query;
 
             await command.ExecuteNonQueryAsync();
-            Console.WriteLine("Процедуру [SpecificBuyerInSpecificContry] створено успішно");
+            Console.WriteLine("Процедуру [SpecificBuyerInSpecificCountry] створено успішно");
         }
         catch (SqlException e)
         {
