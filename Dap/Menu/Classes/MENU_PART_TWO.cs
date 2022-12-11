@@ -46,6 +46,7 @@ internal class MENU_PART_TWO : IMenu
                     break;
                 case ("2"):
                     Console.WriteLine();
+                    await PRINT_QUERIES.Print(new PrintCountBuyersInEachCountry(), connection);
                     break;
                 case ("3"):
                     Console.WriteLine();

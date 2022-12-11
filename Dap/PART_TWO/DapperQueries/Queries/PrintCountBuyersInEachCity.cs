@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 internal class PrintCountBuyersInEachCity : IQuery
 {
-    public async Task Print(SqlConnection connection)
+    public Task Print(SqlConnection connection)
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            var cmd = new SqlCommand("CountBuyersInEachCity", connection)
+            var cmd = new SqlCommand()
             {
+                Connection = connection,
+                CommandText = "CountBuyersInEachCity",
                 CommandType = CommandType.StoredProcedure
             };
 
             foreach (var t in db.Query<CountBuyersInEachCity>("EXEC CountBuyersInEachCity").ToList())
                 Console.WriteLine(t.Count + " " + t.NameCity);
         }
+
+        return Task.CompletedTask;
     }
 }
 
