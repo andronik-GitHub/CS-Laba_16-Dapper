@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 // Відобразити конкретного покупця конкретної країни
 internal class PrintSpecificBuyerInSpecificCountry : IQuery
 {
-    public async Task Print(SqlConnection connection)
+    public Task Print(SqlConnection connection)
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
@@ -19,8 +19,10 @@ internal class PrintSpecificBuyerInSpecificCountry : IQuery
             Console.Write("Введіть назву країни: ");
             string? country = Console.ReadLine();
 
-            foreach (var t in connection.Query("SpecificBuyerInSpecificCountry", new { Name = name, Country = country }, commandType: CommandType.StoredProcedure).ToList()) // виклик процедури
+            foreach (var t in db.Query<Buyer>("SpecificBuyerInSpecificCountry", new { Name = name, Country = country }, commandType: CommandType.StoredProcedure).ToList()) // виклик процедури
                 Console.WriteLine(t.ID_Buyer + " " + t.Name + " " + t.Birthday + " " + t.Email + " " + t.ID_Country + " " + t.ID_City);
         }
+
+        return Task.CompletedTask;
     }
 }
