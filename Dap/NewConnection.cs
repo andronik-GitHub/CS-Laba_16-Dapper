@@ -22,7 +22,6 @@ internal class NewConnection
                 Console.ReadKey(); Console.Clear();
 
                 //await MENU.Menu(connection, new MENU_PART_ONE()); // меню з викликом запитів PART_ONE
-                await CreateProcedures.Create(connection);
                 await MENU.Menu(connection, new MENU_PART_TWO()); // меню з викликом запитів PART_TWO
             }
 
