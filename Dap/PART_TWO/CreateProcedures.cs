@@ -193,5 +193,24 @@ internal class CreateProcedures
         {
             Console.WriteLine(e.Message);
         }
+
+        // Створення процедури [AllPromotionsForSpecBuyer]
+        // Відобразити всі акційні товари для конкретного покупця
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE AllPromotionsForSpecBuyer
+                AS
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [AllPromotionsForSpecBuyer] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 }
