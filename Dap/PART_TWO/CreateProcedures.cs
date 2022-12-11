@@ -277,24 +277,24 @@ internal class CreateProcedures
             Console.WriteLine(e.Message);
         }
 
-        // Створення процедури [TopCountryByCountBuyers]
+        // Створення процедури [TopThreeCitiesByCountBuyers]
         // Показати найкращу країну за кількістю покупців
         try
         {
             query =
             @"
-                CREATE PROCEDURE TopCountryByCountBuyers
+                CREATE PROCEDURE TopThreeCitiesByCountBuyers
                 AS
-                    SELECT TOP 1 A.[ID країни] AS ID_Country, B.[Назва країни] AS Name, COUNT(A.[ID країни]) AS NumCount
-                    FROM [Покупці] A,[Країни] B
-                    WHERE A.[ID країни] = B.[ID країни]
-                    GROUP BY A.[ID країни],B.[Назва країни]
-                    ORDER BY NumCount DESC
+                    SELECT TOP 3 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
+                    FROM [Покупці] A,[Міста] B
+                    WHERE A.[ID країни] = B.[ID країни] AND B.[ID міста] = A.[ID міста]
+                    GROUP BY A.[ID країни],B.[Назва міста]
+                    ORDER BY CCount DESC
             ";
             command.CommandText = query;
 
             await command.ExecuteNonQueryAsync();
-            Console.WriteLine("Процедуру [TopCountryByCountBuyers] створено успішно");
+            Console.WriteLine("Процедуру [TopThreeCitiesByCountBuyers] створено успішно");
         }
         catch (SqlException e)
         {
