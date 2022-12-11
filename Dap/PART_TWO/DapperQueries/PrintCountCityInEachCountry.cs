@@ -12,13 +12,6 @@ internal class PrintCountCityInEachCountry : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            var cmd = new SqlCommand()
-            {
-                Connection = connection,
-                CommandText = "CountBuyersInEachCity",
-                CommandType = CommandType.StoredProcedure
-            };
-
             foreach (var t in db.Query<CountCityInEachCountry>("EXEC CountCityInEachCountry").ToList()) // виклик процедури
                 Console.WriteLine(t.Count + " " + t.NameCountry);
         }
