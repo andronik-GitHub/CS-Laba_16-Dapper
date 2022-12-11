@@ -12,8 +12,9 @@ internal class PrintTopThreeCitiesByCountBuyers : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            foreach (var t in db.Query<TopCityByCountBuyers>("EXEC TopThreeCitiesByCountBuyers").ToList()) // виклик процедури
-                Console.WriteLine($"{t.ID_City} {t.Name,-30} {t.ID_Country} {t.NumCount}");
+            db.Query<TopCityByCountBuyers>("EXEC TopThreeCitiesByCountBuyers")
+                .ToList()
+                .ForEach(t => Console.WriteLine($"{t.ID_City} {t.Name,-30} {t.ID_Country} {t.NumCount}"));
         }
 
         return Task.CompletedTask;
