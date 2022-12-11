@@ -23,7 +23,7 @@ internal class MENU_PART_TWO : IMenu
             Console.WriteLine("10 - Показати найкращу країну за кількістю покупців");
             Console.WriteLine("11 - Показати топ-3 міст за кількістю покупців");
             Console.WriteLine("12 - Показати найкраще місто за кількістю покупців");
-            Console.WriteLine("Exit - Відключення від БД");
+            Console.Write("Exit - Відключення від БД\n > ");
 
             switch (Console.ReadLine()?.ToLower().Trim())
             {
