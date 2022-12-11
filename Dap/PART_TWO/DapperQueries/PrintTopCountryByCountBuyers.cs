@@ -5,7 +5,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
-// Відобразити топ-3 країн за кількістю покупців
+// Показати найкращу країну за кількістю покупців
 internal class PrintTopCountryByCountBuyers : IQuery
 {
     public Task Print(SqlConnection connection)

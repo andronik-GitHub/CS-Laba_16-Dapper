@@ -659,8 +659,8 @@ DROP PROC AllPromotionsForSpecBuyer
 
 
 -- Відобразити топ-3 країн за кількістю покупців
-SELECT TOP 3 A.[ID країни], B.[Назва країни], COUNT(A.[ID країни]) AS CCount
-FROM [Покупці] A,[Країни] B
-WHERE A.[ID країни] = B.[ID країни]
-GROUP BY A.[ID країни],B.[Назва країни]
+SELECT TOP 3 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
+FROM [Покупці] A,[Міста] B
+WHERE A.[ID країни] = B.[ID країни] AND B.[ID міста] = A.[ID міста]
+GROUP BY A.[ID країни],B.[Назва міста]
 ORDER BY CCount DESC
