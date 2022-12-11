@@ -141,17 +141,18 @@ internal class CreateProcedures
         {
             query =
             @"
-                CREATE PROCEDURE AllSectionsOfInterest
+                CREATE PROCEDURE SpecificBuyerInSpecificContry
+                @Name NVARCHAR(50),
+                @Country NVARCHAR
                 AS
-                    SELECT A.[ID розділу] AS ID_Section, A.[Назва розділу] AS NameSection
-                    FROM [Розділи товарів] A,[Зацікавлені розділи] B
-                    WHERE A.[ID розділу] = B.[ID розділу]
-                    GROUP BY A.[Назва розділу], A.[ID розділу]
+                    SELECT A.[ID покупця], A.ПІБ, A.[Дата народження], A.Email, A.[ID країни], A.[ID міста]
+                    FROM [Покупці] A, [Країни] B
+                    WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE '%@Name%' AND B.[Назва країни] = @Country
             ";
             command.CommandText = query;
 
             await command.ExecuteNonQueryAsync();
-            Console.WriteLine("Процедуру [AllSectionsOfInterest] створено успішно");
+            Console.WriteLine("Процедуру [SpecificBuyerInSpecificContry] створено успішно");
         }
         catch (SqlException e)
         {
