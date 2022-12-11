@@ -152,7 +152,7 @@ internal class CreateProcedures
                             A.[ID країни] AS [ID_Country],
                             A.[ID міста] AS [ID_City]
                     FROM [Покупці] A, [Країни] B
-                    WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE ('%' + @Name + '%') AND B.[Назва країни] = @Country
+                    WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE ('%' + @Name + '%') AND B.[Назва країни] LIKE ('%' + @Country + '%')
             ";
             command.CommandText = query;
 

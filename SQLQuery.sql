@@ -597,16 +597,16 @@ CREATE PROC Test
 @Name NVARCHAR(50), 
 @Country NVARCHAR(30)
 AS
-SELECT  A.[ID покупця] AS ID_Buyer,
-                            A.ПІБ AS [Name],
-                            A.[Дата народження] AS Birthday,
-                            A.Email AS Email,
-                            A.[ID країни] AS ID_Country,
-                            A.[ID міста] AS ID_City
-                    FROM [Покупці] A, [Країни] B
-                    WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE ('%' + @Name + '%') AND B.[Назва країни] = @Country
+	SELECT  A.[ID покупця] AS ID_Buyer,
+			A.ПІБ AS [Name],
+			A.[Дата народження] AS Birthday,
+			A.Email AS Email,
+			A.[ID країни] AS ID_Country,
+			A.[ID міста] AS ID_City
+	FROM [Покупці] A, [Країни] B
+	WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE ('%' + @Name + '%') AND B.[Назва країни] = @Country
 
 EXEC Test 'Веркаш','Польша'
 
-
 DROP PROC Test
+

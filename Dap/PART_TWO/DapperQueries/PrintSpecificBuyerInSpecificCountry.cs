@@ -23,13 +23,13 @@ internal class PrintSpecificBuyerInSpecificCountry : IQuery
 
             var result = db.Query<Buyer> // виклик процедури
                 (
-                    "SpecificBuyerInSpecificCountry",
-                    new
+                    "SpecificBuyerInSpecificCountry", // назва процедури
+                    new // параметри для процедури
                     {
                         Name = name,
                         Country = country
                     },
-                    commandType: CommandType.StoredProcedure
+                    commandType: CommandType.StoredProcedure // тип команди збережувана процедура
                 ).ToList();
 
             result.ForEach(t => Console.WriteLine(t.ID_Buyer + " " + t.Name + " " + t.Birthday + " " + t.Email + " " + t.ID_Country + " " + t.ID_City));
