@@ -103,14 +103,13 @@ internal class CreateProcedures
             query =
             @"
                 CREATE PROCEDURE AVGCountCityInAllCountry
-                @A INT OUTPUT,
-                @B INT OUTPUT
+                @City INT OUTPUT,
+                @Country INT OUTPUT
                 AS
 	                BEGIN
-		                SELECT @A = COUNT([Міста].[ID міста]) FROM [Міста]
-		                SELECT @B = COUNT([Країни].[ID країни]) FROM [Країни]
+		                SELECT @City = COUNT([Міста].[ID міста]) FROM [Міста]
+		                SELECT @Country = COUNT([Країни].[ID країни]) FROM [Країни]
 	                END
-                GO
             ";
             command.CommandText = query;
 

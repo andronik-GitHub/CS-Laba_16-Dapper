@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 // Відобразити кількість покупців у кожному місті
 internal class PrintAVGCountCityInAllCountry : IQuery
 {
-    public Task Print(SqlConnection connection)
+    public async Task Print(SqlConnection connection)
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
@@ -19,12 +19,29 @@ internal class PrintAVGCountCityInAllCountry : IQuery
                 CommandType = CommandType.StoredProcedure
             };
 
-            foreach (var t in db.Query<AVGCountCityInAllCountry>("EXEC AVGCountCityInAllCountry")) // виклик процедури
-                Console.WriteLine(t.Count + " " + t.NameCity);
-        }
+            var param = new SqlParameter
+            {
+                ParameterName = "@City",
+                SqlDbType = SqlDbType.Float,
+                Direction = ParameterDirection.Output
+            };
+            cmd.Parameters.Add(param);
+            param = new SqlParameter
+            {
+                ParameterName = "@Country",
+                SqlDbType = SqlDbType.Float,
+                Direction = ParameterDirection.Output
+            };
+            cmd.Parameters.Add(param);
 
-        return Task.CompletedTask;
+            await cmd.ExecuteNonQueryAsync();
+
+            var City = (double)cmd.Parameters["@City"].Value;
+            var Country = (double)cmd.Parameters["@Country"].Value;
+
+            Console.WriteLine(City / Country);
+        }
     }
 }
 
-record class AVGCountCityInAllCountry(int Count, string NameCity);
+record class AVGCountCityInAllCountry(float Count);
