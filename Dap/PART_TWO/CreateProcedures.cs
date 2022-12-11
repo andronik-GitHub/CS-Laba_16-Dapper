@@ -9,7 +9,13 @@ internal class CreateProcedures
 {
     public static async Task Create(SqlConnection connection)
     {
-        string query =
+        string query = ""; // для код запиту
+        var command = new SqlCommand(query,connection); // для виконування команд
+
+        // Створення процедури [CountBuyersInEachCity]
+        try
+        {
+            query =
             @"
                 CREATE PROCEDURE CountBuyersInEachCity
                 AS
@@ -20,16 +26,8 @@ internal class CreateProcedures
                     GROUP BY B.[ID міста],B.[Назва міста]
                 END
             ";
+            command.CommandText = query;
 
-        var command = new SqlCommand()
-        {
-            Connection = connection,
-            CommandText = query
-        };
-
-        // Створення процедури [CountBuyersInEachCity]
-        try
-        {
             await command.ExecuteNonQueryAsync();
             Console.WriteLine("Процедуру [CountBuyersInEachCity] створено успішно");
         }
