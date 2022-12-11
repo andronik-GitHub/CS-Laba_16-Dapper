@@ -19,14 +19,14 @@ internal class PrintAVGCountCityInAllCountry : IQuery
                 CommandType = CommandType.StoredProcedure
             };
 
-            var param = new SqlParameter
+            var param = new SqlParameter // OUTPUT параметр кількість міст
             {
                 ParameterName = "@City",
                 SqlDbType = SqlDbType.Float,
                 Direction = ParameterDirection.Output
             };
             cmd.Parameters.Add(param);
-            param = new SqlParameter
+            param = new SqlParameter // OUTPUT параметр кількість країн
             {
                 ParameterName = "@Country",
                 SqlDbType = SqlDbType.Float,
@@ -43,5 +43,3 @@ internal class PrintAVGCountCityInAllCountry : IQuery
         }
     }
 }
-
-record class AVGCountCityInAllCountry(float Count);
