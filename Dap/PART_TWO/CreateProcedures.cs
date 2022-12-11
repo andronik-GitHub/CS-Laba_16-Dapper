@@ -35,9 +35,6 @@ internal class CreateProcedures
         catch (SqlException e)
         {
             Console.WriteLine(e.Message);
-
-            Console.Write("\nНатисніть для продовження...");
-            Console.ReadKey(); Console.Clear();
         }
 
         // Створення процедури [CountBuyersInEachCountry]
@@ -63,9 +60,6 @@ internal class CreateProcedures
         catch (SqlException e)
         {
             Console.WriteLine(e.Message);
-
-            Console.Write("\nНатисніть для продовження...");
-            Console.ReadKey(); Console.Clear();
         }
 
         // Створення процедури [CountCityInEachCountry]
@@ -91,9 +85,6 @@ internal class CreateProcedures
         catch (SqlException e)
         {
             Console.WriteLine(e.Message);
-
-            Console.Write("\nНатисніть для продовження...");
-            Console.ReadKey(); Console.Clear();
         }
 
         // Створення процедури [AVGCountCityInAllCountry]
@@ -119,9 +110,6 @@ internal class CreateProcedures
         catch (SqlException e)
         {
             Console.WriteLine(e.Message);
-
-            Console.Write("\nНатисніть для продовження...");
-            Console.ReadKey(); Console.Clear();
         }
     }
 }

@@ -5,7 +5,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
-// Відобразити кількість покупців у кожному місті
+// Відобразити середню кількість міст по всіх країнах
 internal class PrintAVGCountCityInAllCountry : IQuery
 {
     public async Task Print(SqlConnection connection)
@@ -39,7 +39,7 @@ internal class PrintAVGCountCityInAllCountry : IQuery
             var City = (double)cmd.Parameters["@City"].Value;
             var Country = (double)cmd.Parameters["@Country"].Value;
 
-            Console.WriteLine(City / Country);
+            Console.WriteLine("Середня кількість міст по всіх країнах:" + (City / Country));
         }
     }
 }
