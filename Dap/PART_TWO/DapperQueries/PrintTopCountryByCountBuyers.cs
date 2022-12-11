@@ -12,7 +12,7 @@ internal class PrintTopCountryByCountBuyers : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            foreach (var t in db.Query<TopCountryByCountBuyers>("EXEC TopThreeCountryByCountBuyers").ToList()) // виклик процедури
+            foreach (var t in db.Query<TopCountryByCountBuyers>("EXEC TopCountryByCountBuyers").ToList()) // виклик процедури
                 Console.WriteLine($"{t.ID_Country} {t.Name,-30} {t.NumCount}");
         }
 
