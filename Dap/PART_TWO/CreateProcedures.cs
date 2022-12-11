@@ -13,6 +13,7 @@ internal class CreateProcedures
         var command = new SqlCommand(query,connection); // для виконування команд
 
         // Створення процедури [CountBuyersInEachCity]
+        // Відобразити кількість покупців у кожному місті
         try
         {
             query =
@@ -40,6 +41,7 @@ internal class CreateProcedures
         }
 
         // Створення процедури [CountBuyersInEachCountry]
+        // Відобразити кількість покупців у кожній країні
         try
         {
             query =
@@ -57,6 +59,34 @@ internal class CreateProcedures
 
             await command.ExecuteNonQueryAsync();
             Console.WriteLine("Процедуру [CountBuyersInEachCountry] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+
+            Console.Write("\nНатисніть для продовження...");
+            Console.ReadKey(); Console.Clear();
+        }
+
+        // Створення процедури [CountCityInEachCountry]
+        // Відобразити кількість міст у кожній країні
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE CountCityInEachCountry
+                AS
+                BEGIN
+                    SELECT COUNT(A.[ID міста]) AS Count, B.[Назва країни] AS NameCountry
+                    FROM [Міста] A, [Країни] B
+                    WHERE A.[ID Країни] = B.[ID Країни]
+                    GROUP BY B.[ID Країни],B.[Назва Країни]
+                END
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [CountCityInEachCountry] створено успішно");
         }
         catch (SqlException e)
         {

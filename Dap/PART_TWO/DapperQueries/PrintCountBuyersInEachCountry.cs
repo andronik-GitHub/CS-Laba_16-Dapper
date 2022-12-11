@@ -18,7 +18,7 @@ internal class PrintCountBuyersInEachCountry : IQuery
                 CommandType = CommandType.StoredProcedure
             };
 
-            foreach (var t in db.Query<CountCountry>("EXEC CountBuyersInEachCountry").ToList())
+            foreach (var t in db.Query<CountCountry>("EXEC CountBuyersInEachCountry").ToList()) // виклик процедури
                 Console.WriteLine(t.Count + " " + t.NameCountry);
         }
 

@@ -9,9 +9,10 @@ internal class MENU_PART_TWO : IMenu
 {
     public async Task Menu(SqlConnection connection)
     {
+        // Cтворення процедур
         try
         {
-            await CreateProcedures.Create(connection); // створення процедур
+            await CreateProcedures.Create(connection);
             Console.ReadKey(); Console.Clear();
         }
         catch (Exception e)

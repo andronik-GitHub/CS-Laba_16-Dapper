@@ -18,7 +18,7 @@ internal class PrintCountBuyersInEachCity : IQuery
                 CommandType = CommandType.StoredProcedure
             };
 
-            foreach (var t in db.Query<CountBuyersInEachCity>("EXEC CountBuyersInEachCity").ToList())
+            foreach (var t in db.Query<CountBuyersInEachCity>("EXEC CountBuyersInEachCity").ToList()) // виклик процедури
                 Console.WriteLine(t.Count + " " + t.NameCity);
         }
 
