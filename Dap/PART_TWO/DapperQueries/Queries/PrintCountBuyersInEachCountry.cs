@@ -5,9 +5,9 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
-internal class PrintCountBuyersInEachCountry
+internal class PrintCountBuyersInEachCountry : IQuery
 {
-    public static async Task Print(SqlConnection connection)
+    public async Task Print(SqlConnection connection)
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
