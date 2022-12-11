@@ -12,10 +12,12 @@ internal class PrintTopThreeCountryByCountBuyers : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            foreach (var t in db.Query<Countries>("EXEC TopThreeCountryByCountBuyers").ToList()) // виклик процедури
-                Console.WriteLine(t.ID_Country + " " + t.Name);
+            foreach (var t in db.Query<TopThreeCountryByCountBuyers>("EXEC TopThreeCountryByCountBuyers").ToList()) // виклик процедури
+                Console.WriteLine(t.ID_Country + " " + t.Name + " " + t.NumCount);
         }
 
         return Task.CompletedTask;
     }
 }
+
+record class TopThreeCountryByCountBuyers (int ID_Country, string Name, int NumCount);

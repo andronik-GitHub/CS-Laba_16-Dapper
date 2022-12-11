@@ -237,6 +237,11 @@ internal class CreateProcedures
             @"
                 CREATE PROCEDURE TopThreeCountryByCountBuyers
                 AS
+                    SELECT TOP 3 A.[ID країни] AS ID_Country, B.[Назва країни] AS Name, COUNT(A.[ID країни]) AS NumCount
+                    FROM [Покупці] A,[Країни] B
+                    WHERE A.[ID країни] = B.[ID країни]
+                    GROUP BY A.[ID країни],B.[Назва країни]
+                    ORDER BY NumCount DESC
             ";
             command.CommandText = query;
 
