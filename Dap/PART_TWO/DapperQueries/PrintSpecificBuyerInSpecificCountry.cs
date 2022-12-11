@@ -21,7 +21,7 @@ internal class PrintSpecificBuyerInSpecificCountry : IQuery
             Console.WriteLine();
 
 
-            var result = db.Query<Buyer> // виклик процедури
+            db.Query<Buyer> // виклик процедури
                 (
                     "SpecificBuyerInSpecificCountry", // назва процедури
                     new // параметри для процедури
@@ -30,9 +30,10 @@ internal class PrintSpecificBuyerInSpecificCountry : IQuery
                         Country = country
                     },
                     commandType: CommandType.StoredProcedure // тип команди збережувана процедура
-                ).ToList();
-
-            result.ForEach(t => Console.WriteLine(t.ID_Buyer + " " + t.Name + " " + t.Birthday + " " + t.Email + " " + t.ID_Country + " " + t.ID_City));
+                )
+                .ToList() // результат запиту в форматі List<T>
+                // По-елементно перебираю результат
+                .ForEach(t => Console.WriteLine(t.ID_Buyer + " " + t.Name + " " + t.Birthday + " " + t.Email + " " + t.ID_Country + " " + t.ID_City));
         }
 
         return Task.CompletedTask;
