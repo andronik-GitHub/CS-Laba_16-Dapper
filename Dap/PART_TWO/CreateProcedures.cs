@@ -175,11 +175,11 @@ internal class CreateProcedures
                 @Start DATE,
                 @End DATE
                 AS
-	                SELECT	A.[ID акції] AS [s],
-			                A.[Назва товару] AS [s],
-			                A.[ID розділу] AS [s],
-			                A.[Дата початку] AS [s],
-			                A.[Дата кінця] AS [s]
+	                SELECT	A.[ID акції] AS [ID_Stock],
+			                A.[Назва товару] AS [NameProduct],
+			                A.[ID розділу] AS [ID_Section],
+			                A.[Дата початку] AS [StartTime],
+			                A.[Дата кінця] AS [EndTime]
 	                FROM [Акційні товари] A
 	                WHERE A.[Назва товару] LIKE ('%' + @Name + '%') AND
 	                (A.[Дата початку] >= @Start AND A.[Дата кінця] <= @End)

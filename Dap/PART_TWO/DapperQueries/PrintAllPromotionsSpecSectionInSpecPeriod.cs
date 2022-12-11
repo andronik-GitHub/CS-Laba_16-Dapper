@@ -17,23 +17,25 @@ internal class PrintAllPromotionsSpecSectionInSpecPeriod : IQuery
             string? name = Console.ReadLine();
 
             Console.Write("Введіть проміжок часу[mm.dd.yyyy:mm.dd.yyyy]: ");
-            string[]? country = Console.ReadLine()?.Split(':');
-            Console.WriteLine(string.Join(' ',country));
+            string[]? time = Console.ReadLine()?.Split(':');
 
-            /*
-            var result = db.Query<Buyer> // виклик процедури
+            
+            if (time != null)
+            {
+                var result = db.Query<PromotionalProducts> // виклик процедури
                 (
                     "AllPromotionsSpecSectionInSpecPeriod", // назва процедури
                     new // параметри для процедури
                     {
                         Name = name,
-                        Country = country
+                        Start = time[0],
+                        End = time[1]
                     },
                     commandType: CommandType.StoredProcedure // тип команди збережувана процедура
                 ).ToList();
 
-            result.ForEach(t => Console.WriteLine(t.ID_Buyer + " " + t.Name + " " + t.Birthday + " " + t.Email + " " + t.ID_Country + " " + t.ID_City));
-            */
+                result.ForEach(t => Console.WriteLine(t.ID_Stock + " " + t.NameProduct + " " + t.ID_Section + " " + t.StartTime + " " + t.EndTime));
+            }
         }
 
         return Task.CompletedTask;
