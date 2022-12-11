@@ -25,6 +25,7 @@ internal class MENU_PART_TWO : IMenu
 
         while (true) // міні-менюшка
         {
+            Console.WriteLine("\t\tPART TWO");
             Console.WriteLine("1 - Відобразити кількість покупців у кожному місті");
             Console.WriteLine("2 - Відобразити кількість покупців у кожній країні");
             Console.WriteLine("3 - Відобразити кількість міст у кожній країні");

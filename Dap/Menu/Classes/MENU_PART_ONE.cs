@@ -11,6 +11,7 @@ internal class MENU_PART_ONE : IMenu
     {
         while (true) // міні-менюшка
         {
+            Console.WriteLine("\t\tPART ONE");
             Console.WriteLine("1 - Відображення всіх покупців");
             Console.WriteLine("2 - Відображення email всіх покупців");
             Console.WriteLine("3 - Відображення списку розділів");
@@ -20,7 +21,7 @@ internal class MENU_PART_ONE : IMenu
             Console.WriteLine("7 - Відображення всіх покупців із конкретного міста");
             Console.WriteLine("8 - Відображення всіх покупців із конкретної країни");
             Console.WriteLine("9 - Відображення всіх акцій для конкретної країни");
-            Console.Write("Exit - Відключення від БД\n > ");
+            Console.Write("Exit - Відключення від БД(PART TWO)\n > ");
 
             switch (Console.ReadLine()?.ToLower().Trim())
             {
@@ -63,6 +64,8 @@ internal class MENU_PART_ONE : IMenu
                 case ("exit"):
                 case ("учшт"):
                     Console.WriteLine();
+                    Console.ReadKey();
+                    Console.Clear();
                     return;
                 default:
                     Console.Write("\nВведено некоректне значення...");
