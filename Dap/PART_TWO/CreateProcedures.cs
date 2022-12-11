@@ -23,8 +23,8 @@ internal class CreateProcedures
                 BEGIN
                     SELECT COUNT(A.[ID покупця]) AS Count, B.[Назва міста] AS NameCity
                     FROM [Покупці] A, [Міста] B
-                    WHERE A.[ID міста] = B.[ID міста]
-                    GROUP BY B.[ID міста],B.[Назва міста]
+                    WHERE A.[ID міста] = B.[ID міста] AND A.[ID країни] = B.[ID країни]
+                    GROUP BY B.[Назва міста]
                 END
             ";
             command.CommandText = query;
@@ -49,7 +49,7 @@ internal class CreateProcedures
                     SELECT COUNT(A.[ID покупця]) AS Count, B.[Назва країни] AS NameCountry
                     FROM [Покупці] A, [Країни] B
                     WHERE A.[ID Країни] = B.[ID Країни]
-                    GROUP BY B.[ID Країни],B.[Назва Країни]
+                    GROUP BY B.[Назва Країни]
                 END
             ";
             command.CommandText = query;
