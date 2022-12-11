@@ -13,31 +13,22 @@ internal class PrintAllPromotionsForSpecBuyer : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            Console.Write("Введіть назву товару: ");
+            Console.Write("Введіть ім'я покупця: ");
             string? name = Console.ReadLine();
-
-            Console.Write("Введіть проміжок часу[mm.dd.yyyy:mm.dd.yyyy]: ");
-            string[]? time = Console.ReadLine()?.Split(':', ' ');
             Console.WriteLine();
 
-
-            if (time != null)
-            {
-                db.Query<PromotionalProducts> // виклик процедури
-                (
-                    "AllPromotionsForSpecBuyer", // назва процедури
-                    new // параметри для процедури
-                    {
-                        Name = name,
-                        Start = time[0],
-                        End = time[1]
-                    },
-                    commandType: CommandType.StoredProcedure // тип команди збережувана процедура
-                )
-                .ToList() // результат запиту в форматі List<T>
-                // По-елементно перебираю результат
-                .ForEach(t => Console.WriteLine($"{t.ID_Stock} {t.NameProduct,-100} {t.ID_Section} {t.StartTime[..10]} {t.EndTime[..10]}"));
-            }
+            db.Query<PromotionalProducts> // виклик процедури
+            (
+                "AllPromotionsForSpecBuyer", // назва процедури
+                new // параметри для процедури
+                {
+                    Name = name
+                },
+                commandType: CommandType.StoredProcedure // тип команди збережувана процедура
+            )
+            .ToList() // результат запиту в форматі List<T>
+            // По-елементно перебираю результат
+            .ForEach(t => Console.WriteLine($"{t.ID_Stock} {t.NameProduct,-100} {t.ID_Section} {t.StartTime[..10]} {t.EndTime[..10]}"));
         }
 
         return Task.CompletedTask;

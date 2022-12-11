@@ -629,3 +629,30 @@ AS
 EXEC AllPromotionsSpecSectionInSpecPeriod 'Ноутбук','02.02.2021','02.02.2023'
 
 DROP PROC AllPromotionsSpecSectionInSpecPeriod
+
+
+--Відобразити всі акційні товари для конкретного покупця
+GO
+CREATE PROCEDURE AllPromotionsForSpecBuyer
+@Name NVARCHAR(50)
+AS
+	SELECT	A.[ID акції] AS [ID_Stock],
+			A.[Назва товару] AS [NameProduct],
+			A.[ID розділу] AS [ID_Section],
+			A.[Дата початку] AS [StartTime],
+			A.[Дата кінця] AS [EndTime]
+	FROM	[Акційні товари] A,
+			[Розділи_Товари] B,
+			[Розділи товарів] C, 
+			[Зацікавлені розділи] D, 
+			[Покупці] E
+	WHERE	A.[ID акції] = B.[ID акції] AND
+			B.[ID розділу] = C.[ID розділу] AND
+			C.[ID розділу] = D.[ID розділу] AND
+			D.[ID покупця] = E.[ID покупця] AND
+			E.ПІБ LIKE ('%' + @Name + '%')
+
+EXEC AllPromotionsForSpecBuyer 'Веркаш'
+
+DROP PROC AllPromotionsForSpecBuyer
+
