@@ -18,10 +18,12 @@ internal class PrintSpecificBuyerInSpecificCountry : IQuery
 
             Console.Write("Введіть назву країни: ");
             string? country = Console.ReadLine();
+            Console.WriteLine();
+
 
             var result = db.Query<Buyer> // виклик процедури
                 (
-                    "[SpecificBuyerInSpecificCountry]",
+                    "SpecificBuyerInSpecificCountry",
                     new
                     {
                         Name = name,

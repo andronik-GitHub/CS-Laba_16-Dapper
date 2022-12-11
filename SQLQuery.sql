@@ -591,10 +591,22 @@ FROM [Розділи товарів] A,[Зацікавлені розділи] B
 WHERE A.[ID розділу] = B.[ID розділу]
 GROUP BY A.[Назва розділу], A.[ID розділу]
 
+GO
 --Відобразити конкретного покупця конкретної країни
-SELECT A.[ID покупця], A.ПІБ, A.[Дата народження], A.Email, A.[ID країни], A.[ID міста]
-FROM [Покупці] A, [Країни] B
-WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE '%Рома%' AND B.[Назва країни] = 'Бразилія'
+CREATE PROC Test
+@Name NVARCHAR(50), 
+@Country NVARCHAR(30)
+AS
+SELECT  A.[ID покупця] AS ID_Buyer,
+                            A.ПІБ AS [Name],
+                            A.[Дата народження] AS Birthday,
+                            A.Email AS Email,
+                            A.[ID країни] AS ID_Country,
+                            A.[ID міста] AS ID_City
+                    FROM [Покупці] A, [Країни] B
+                    WHERE A.[ID країни] = B.[ID країни] AND A.ПІБ LIKE ('%' + @Name + '%') AND B.[Назва країни] = @Country
+
+EXEC Test 'Веркаш','Польша'
 
 
-
+DROP PROC Test
