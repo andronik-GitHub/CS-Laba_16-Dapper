@@ -253,6 +253,30 @@ internal class CreateProcedures
             Console.WriteLine(e.Message);
         }
 
+        // Створення процедури [TopCountryByCountBuyers]
+        // Показати найкращу країну за кількістю покупців
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE TopCountryByCountBuyers
+                AS
+                    SELECT TOP 1 A.[ID країни] AS ID_Country, B.[Назва країни] AS Name, COUNT(A.[ID країни]) AS NumCount
+                    FROM [Покупці] A,[Країни] B
+                    WHERE A.[ID країни] = B.[ID країни]
+                    GROUP BY A.[ID країни],B.[Назва країни]
+                    ORDER BY NumCount DESC
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [TopCountryByCountBuyers] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
         // Створення процедури [TopThreeCitiesByCountBuyers]
         // Показати топ-3 міст за кількістю покупців
         try
@@ -261,11 +285,11 @@ internal class CreateProcedures
             @"
                 CREATE PROCEDURE TopThreeCitiesByCountBuyers
                 AS
-                    SELECT TOP 3 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
+                    SELECT TOP 3 B.[ID міста] AS ID_City, B.[Назва міста] AS Name, A.[ID країни] AS ID_Country, COUNT(A.[ID країни]) AS NumCount
                     FROM [Покупці] A,[Міста] B
                     WHERE A.[ID країни] = B.[ID країни] AND B.[ID міста] = A.[ID міста]
-                    GROUP BY A.[ID країни],B.[Назва міста]
-                    ORDER BY CCount DESC
+                    GROUP BY A.[ID країни],B.[Назва міста], B.[ID міста]
+                    ORDER BY NumCount DESC
             ";
             command.CommandText = query;
 
@@ -277,48 +301,24 @@ internal class CreateProcedures
             Console.WriteLine(e.Message);
         }
 
-        // Створення процедури [TopThreeCityByCountBuyers]
+        // Створення процедури [TopCityByCountBuyers]
         // Показати найкраще місто за кількістю покупців
         try
         {
             query =
             @"
-                CREATE PROCEDURE TopThreeCityByCountBuyers
+                CREATE PROCEDURE TopCityByCountBuyers
                 AS
-                    SELECT TOP 3 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
+                    SELECT TOP 1 B.[ID міста] AS ID_City, B.[Назва міста] AS Name, A.[ID країни] AS ID_Country, COUNT(A.[ID країни]) AS NumCount
                     FROM [Покупці] A,[Міста] B
                     WHERE A.[ID країни] = B.[ID країни] AND B.[ID міста] = A.[ID міста]
-                    GROUP BY A.[ID країни],B.[Назва міста]
-                    ORDER BY CCount DESC
+                    GROUP BY A.[ID країни],B.[Назва міста], B.[ID міста]
+                    ORDER BY NumCount DESC
             ";
             command.CommandText = query;
 
             await command.ExecuteNonQueryAsync();
-            Console.WriteLine("Процедуру [TopThreeCityByCountBuyers] створено успішно");
-        }
-        catch (SqlException e)
-        {
-            Console.WriteLine(e.Message);
-        }
-
-        // Створення процедури [TopThreeCitiesByCountBuyers]
-        // Показати найкращу країну за кількістю покупців
-        try
-        {
-            query =
-            @"
-                CREATE PROCEDURE TopThreeCitiesByCountBuyers
-                AS
-                    SELECT TOP 1 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
-                    FROM [Покупці] A,[Міста] B
-                    WHERE A.[ID країни] = B.[ID країни] AND B.[ID міста] = A.[ID міста]
-                    GROUP BY A.[ID країни],B.[Назва міста]
-                    ORDER BY CCount DESC
-            ";
-            command.CommandText = query;
-
-            await command.ExecuteNonQueryAsync();
-            Console.WriteLine("Процедуру [TopThreeCitiesByCountBuyers] створено успішно");
+            Console.WriteLine("Процедуру [TopCityByCountBuyers] створено успішно");
         }
         catch (SqlException e)
         {

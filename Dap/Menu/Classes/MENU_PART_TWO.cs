@@ -83,9 +83,11 @@ internal class MENU_PART_TWO : IMenu
                     break;
                 case ("11"):
                     Console.WriteLine();
+                    await PRINT_QUERIES.Print(new PrintTopThreeCitiesByCountBuyers(), connection);
                     break;
                 case ("12"):
                     Console.WriteLine();
+                    await PRINT_QUERIES.Print(new PrintTopCityByCountBuyers(), connection);
                     break;
                 case ("exit"):
                     Console.WriteLine();
