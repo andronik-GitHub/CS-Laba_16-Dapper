@@ -92,6 +92,8 @@ internal class MENU_PART_TWO : IMenu
                     break;
                 case ("exit"):
                     Console.WriteLine();
+                    Console.ReadKey();
+                    Console.Clear();
                     return;
                 default:
                     Console.Write("\nВведено некоректне значення...");
