@@ -163,5 +163,24 @@ internal class CreateProcedures
         {
             Console.WriteLine(e.Message);
         }
+
+        // Створення процедури [AllPromotionsSpecSectionInSpecPeriod]
+        // Відобразити всі акції товару конкретного розділу за вказаний проміжок часу
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE AllPromotionsSpecSectionInSpecPeriod
+                AS
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [AllPromotionsSpecSectionInSpecPeriod] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 }
