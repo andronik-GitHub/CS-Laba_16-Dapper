@@ -288,7 +288,7 @@ internal class CreateProcedures
                     SELECT TOP 3 B.[ID міста] AS ID_City, B.[Назва міста] AS Name, A.[ID країни] AS ID_Country, COUNT(A.[ID країни]) AS NumCount
                     FROM [Покупці] A, [Міста] B
                     WHERE A.[ID міста] = B.[ID міста]
-                    GROUP BY B.[ID міста],B.[Назва міста]
+                    GROUP BY B.[ID міста],B.[Назва міста], A.[ID країни]
                     ORDER BY NumCount DESC
             ";
             command.CommandText = query;
@@ -312,7 +312,7 @@ internal class CreateProcedures
                     SELECT TOP 1 B.[ID міста] AS ID_City, B.[Назва міста] AS Name, A.[ID країни] AS ID_Country, COUNT(A.[ID країни]) AS NumCount
                     FROM [Покупці] A, [Міста] B
                     WHERE A.[ID міста] = B.[ID міста]
-                    GROUP BY B.[ID міста],B.[Назва міста]
+                    GROUP BY B.[ID міста],B.[Назва міста], A.[ID країни]
                     ORDER BY NumCount DESC
             ";
             command.CommandText = query;
