@@ -35,7 +35,7 @@ internal class PrintAllPromotionsSpecSectionInSpecPeriod : IQuery
                     commandType: CommandType.StoredProcedure // тип команди збережувана процедура
                 )
                 .ToList()
-                .ForEach(t => Console.WriteLine(t.ID_Stock + " " + t.NameProduct + " " + t.ID_Section + " " + t.StartTime + " " + t.EndTime));
+                .ForEach(t => Console.WriteLine($"{t.ID_Stock} {t.NameProduct, -100} {t.ID_Section} {t.StartTime[..10]} {t.EndTime[..10]}"));
             }
         }
 
