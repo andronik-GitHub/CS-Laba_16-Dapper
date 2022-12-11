@@ -13,14 +13,14 @@ internal class PrintAllPromotionsSpecSectionInSpecPeriod : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            Console.Write("Введіть ім'я: ");
+            Console.Write("Введіть назву розділу: ");
             string? name = Console.ReadLine();
 
-            Console.Write("Введіть назву країни: ");
-            string? country = Console.ReadLine();
-            Console.WriteLine();
+            Console.Write("Введіть проміжок часу[mm.dd.yyyy:mm.dd.yyyy]: ");
+            string[]? country = Console.ReadLine()?.Split(':');
+            Console.WriteLine(string.Join(' ',country));
 
-
+            /*
             var result = db.Query<Buyer> // виклик процедури
                 (
                     "AllPromotionsSpecSectionInSpecPeriod", // назва процедури
@@ -33,6 +33,7 @@ internal class PrintAllPromotionsSpecSectionInSpecPeriod : IQuery
                 ).ToList();
 
             result.ForEach(t => Console.WriteLine(t.ID_Buyer + " " + t.Name + " " + t.Birthday + " " + t.Email + " " + t.ID_Country + " " + t.ID_City));
+            */
         }
 
         return Task.CompletedTask;

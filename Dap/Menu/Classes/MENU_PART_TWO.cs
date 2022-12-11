@@ -67,6 +67,7 @@ internal class MENU_PART_TWO : IMenu
                     break;
                 case ("7"):
                     Console.WriteLine();
+                    await PRINT_QUERIES.Print(new PrintAllPromotionsSpecSectionInSpecPeriod(),connection);
                     break;
                 case ("8"):
                     Console.WriteLine();
