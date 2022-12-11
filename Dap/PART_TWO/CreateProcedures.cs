@@ -95,5 +95,33 @@ internal class CreateProcedures
             Console.Write("\nНатисніть для продовження...");
             Console.ReadKey(); Console.Clear();
         }
+
+        // Створення процедури [CountCityInEachCountry]
+        // Відобразити середню кількість міст по всіх країнах
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE CountCityInEachCountry
+                AS
+                BEGIN
+                    SELECT COUNT(A.[ID міста]) AS Count, B.[Назва країни] AS NameCountry
+                    FROM [Міста] A, [Країни] B
+                    WHERE A.[ID Країни] = B.[ID Країни]
+                    GROUP BY B.[ID Країни],B.[Назва Країни]
+                END
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [CountCityInEachCountry] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+
+            Console.Write("\nНатисніть для продовження...");
+            Console.ReadKey(); Console.Clear();
+        }
     }
 }

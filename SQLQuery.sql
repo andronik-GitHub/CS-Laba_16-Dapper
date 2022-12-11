@@ -564,16 +564,16 @@ SELECT	MAX([ID акції]) AS [Акційні товари]
 FROM [Акційні товари]
 
 
-SELECT B.[ID покупця] AS ID_Buyer,
-B.[ПІБ] AS Name,
-B.[Дата народження] AS Birthday,
-B.[Email] AS Email,
-B.[ID країни] AS ID_Country,
-B.[ID міста] AS ID_City
+SELECT	B.[ID покупця] AS ID_Buyer,
+		B.[ПІБ] AS Name,
+		B.[Дата народження] AS Birthday,
+		B.[Email] AS Email,
+		B.[ID країни] AS ID_Country,
+		B.[ID міста] AS ID_City
 FROM [Покупці] B,[Міста] C
 WHERE B.[ID міста] = C.[ID міста] AND C.[Назва міста] = 'Бразиліа'
 
-SELECT COUNT(A.[ID міста]) AS Count, B.[Назва країни] AS NameCountry
-                    FROM [Міста] A, [Країни] B
-                    WHERE A.[ID Країни] = B.[ID Країни]
-                    GROUP BY B.[ID Країни],B.[Назва Країни]
+SELECT AVG(A.[ID міста]) AS AVG_Count, B.[Назва країни] AS NameCountry
+FROM [Міста] A, [Країни] B
+WHERE A.[ID Країни] = B.[ID Країни]
+GROUP BY B.[ID Країни],B.[Назва Країни]
