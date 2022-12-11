@@ -9,7 +9,7 @@ internal class CreateProcedures
 {
     public static async Task Create(SqlConnection connection)
     {
-        string query = ""; // для код запиту
+        string query = ""; // для кодy запиту
         var command = new SqlCommand(query, connection); // для виконування команд
 
         // Створення процедури [CountBuyersInEachCity]
