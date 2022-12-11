@@ -166,7 +166,7 @@ internal class CreateProcedures
 
         // Створення процедури [AllPromotionsSpecSectionInSpecPeriod]
         // Відобразити всі акції товару конкретного розділу за вказаний проміжок часу
-        /*try
+        try
         {
             query =
             @"
@@ -192,6 +192,6 @@ internal class CreateProcedures
         catch (SqlException e)
         {
             Console.WriteLine(e.Message);
-        }*/
+        }
     }
 }
