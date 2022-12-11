@@ -12,7 +12,6 @@ internal class MAIN
         Console.OutputEncoding = System.Text.Encoding.UTF8; // Для відображення кирилиці
 
         //await CREATE.Create();
-        Console.Clear();
         await NewConnection.Connection();
 
 

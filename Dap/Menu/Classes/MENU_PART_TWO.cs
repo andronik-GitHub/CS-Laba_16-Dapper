@@ -9,6 +9,19 @@ internal class MENU_PART_TWO : IMenu
 {
     public async Task Menu(SqlConnection connection)
     {
+        try
+        {
+            await CreateProcedures.Create(connection); // створення процедур
+            Console.ReadKey(); Console.Clear();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+
+            Console.Write("\nНатисніть для продовження...");
+            Console.ReadKey(); Console.Clear();
+        }
+
         while (true) // міні-менюшка
         {
             Console.WriteLine("1 - Відобразити кількість покупців у кожному місті");
@@ -29,6 +42,7 @@ internal class MENU_PART_TWO : IMenu
             {
                 case ("1"):
                     Console.WriteLine();
+                    await PRINT_QUERIES.Print(new PrintCountBuyersInEachCity(), connection);
                     break;
                 case ("2"):
                     Console.WriteLine();

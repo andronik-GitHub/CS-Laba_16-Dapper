@@ -810,6 +810,9 @@ internal class CREATE
                         Console.ReadKey(); Console.Clear();
                     }
                 }
+
+
+                Console.ReadKey(); Console.Clear(); 
             }
         }
         catch (Exception e) // якщо БД [Список розсилки] не вдалось створити
