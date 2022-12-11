@@ -21,7 +21,7 @@ internal class NewConnection
                 Console.WriteLine("Пiдключення до бази [Список розсилки] завершено успішно");
                 Console.ReadKey(); Console.Clear();
 
-                //await MENU.Menu(connection, new MENU_PART_ONE()); // меню з викликом запитів PART_ONE
+                await PRINT_MENU.Print(connection, new MENU_PART_ONE()); // меню з викликом запитів PART_ONE
                 await PRINT_MENU.Print(connection, new MENU_PART_TWO()); // меню з викликом запитів PART_TWO
             }
 
