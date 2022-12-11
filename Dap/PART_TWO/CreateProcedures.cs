@@ -7,8 +7,65 @@ using System.Threading.Tasks;
 
 internal class CreateProcedures
 {
-    public static async Task CreateProcedures()
+    public static async Task Create(SqlConnection connection)
     {
+        string query =
+            @"
+                CREATE PROCEDURE CountBuyersInEachCity
+                AS
+                BEGIN
+                    SELECT COUNT(A.[ID покупця]) AS Count, B.[Назва міста] AS NameCity
+                    FROM [Покупці] A, [Міста] B
+                    WHERE A.[ID міста] = B.[ID міста]
+                    GROUP BY B.[ID міста],B.[Назва міста]
+                END
+            ";
 
+        var command = new SqlCommand()
+        {
+            Connection = connection,
+            CommandText = query
+        };
+
+        // Створення процедури [CountBuyersInEachCity]
+        try
+        {
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [CountBuyersInEachCity] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+
+            Console.Write("\nНатисніть для продовження...");
+            Console.ReadKey(); Console.Clear();
+        }
+
+        // Створення процедури [CountBuyersInEachCountry]
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE CountBuyersInEachCountry
+                AS
+                BEGIN
+                    SELECT COUNT(A.[ID покупця]) AS Count, B.[Назва країни] AS NameCountry
+                    FROM [Покупці] A, [Країни] B
+                    WHERE A.[ID Країни] = B.[ID Країни]
+                    GROUP BY B.[ID Країни],B.[Назва Країни]
+                END
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [CountBuyersInEachCountry] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+
+            Console.Write("\nНатисніть для продовження...");
+            Console.ReadKey(); Console.Clear();
+        }
     }
 }
