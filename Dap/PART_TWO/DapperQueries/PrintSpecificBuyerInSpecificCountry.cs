@@ -19,7 +19,7 @@ internal class PrintSpecificBuyerInSpecificCountry : IQuery
             string? country = Console.ReadLine();
 
             foreach (var t in db.Query<Buyer>($"EXEC SpecificBuyerInSpecificCountry '{name}', '{country}'").ToList()) // виклик процедури
-                Console.WriteLine();
+                Console.WriteLine(t.ID_Buyer + " " + t.Name + " " + t.Birthday + " " + t.Email + " " + t.ID_Country + " " + t.ID_City);
         }
 
         return Task.CompletedTask;
