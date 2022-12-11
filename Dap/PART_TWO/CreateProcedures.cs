@@ -285,7 +285,7 @@ internal class CreateProcedures
             @"
                 CREATE PROCEDURE TopThreeCityByCountBuyers
                 AS
-                    SELECT TOP 1 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
+                    SELECT TOP 3 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
                     FROM [Покупці] A,[Міста] B
                     WHERE A.[ID країни] = B.[ID країни] AND B.[ID міста] = A.[ID міста]
                     GROUP BY A.[ID країни],B.[Назва міста]
@@ -309,7 +309,7 @@ internal class CreateProcedures
             @"
                 CREATE PROCEDURE TopThreeCitiesByCountBuyers
                 AS
-                    SELECT TOP 3 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
+                    SELECT TOP 1 A.[ID країни], B.[Назва міста], COUNT(A.[ID країни]) AS CCount
                     FROM [Покупці] A,[Міста] B
                     WHERE A.[ID країни] = B.[ID країни] AND B.[ID міста] = A.[ID міста]
                     GROUP BY A.[ID країни],B.[Назва міста]
