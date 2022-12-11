@@ -573,8 +573,15 @@ SELECT	B.[ID покупця] AS ID_Buyer,
 FROM [Покупці] B,[Міста] C
 WHERE B.[ID міста] = C.[ID міста] AND C.[Назва міста] = 'Бразиліа'
 
-
+GO
 --Відобразити середню кількість міст по всіх країнах
-SELECT CAST((COUNT(A.[ID міста]) / COUNT(B.[ID Країни])) AS FLOAT) AS AVG_Count
-FROM [Міста] A, [Країни] B
-WHERE A.[ID Країни] = B.[ID Країни]
+CREATE PROCEDURE AVGCountCityInAllCountry
+@A INT OUTPUT,
+@B INT OUTPUT
+AS
+	BEGIN
+		SELECT @A = COUNT([Міста].[ID міста]) FROM [Міста]
+		SELECT @B = COUNT([Країни].[ID країни]) FROM [Країни]
+	END
+GO
+
