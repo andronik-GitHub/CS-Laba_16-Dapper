@@ -171,7 +171,18 @@ internal class CreateProcedures
             query =
             @"
                 CREATE PROCEDURE AllPromotionsSpecSectionInSpecPeriod
+                @Name NVARCHAR(100),
+                @Start DATE,
+                @End DATE
                 AS
+	                SELECT	A.[ID акції] AS [s],
+			                A.[Назва товару] AS [s],
+			                A.[ID розділу] AS [s],
+			                A.[Дата початку] AS [s],
+			                A.[Дата кінця] AS [s]
+	                FROM [Акційні товари] A
+	                WHERE A.[Назва товару] LIKE ('%' + @Name + '%') AND
+	                (A.[Дата початку] >= @Start AND A.[Дата кінця] <= @End)
             ";
             command.CommandText = query;
 

@@ -610,3 +610,22 @@ EXEC Test 'Веркаш','Польша'
 
 DROP PROC Test
 
+--Відобразити всі акції товару конкретного розділу за вказаний проміжок часу
+GO
+CREATE PROCEDURE AllPromotionsSpecSectionInSpecPeriod
+@Name NVARCHAR(100),
+@Start DATE,
+@End DATE
+AS
+	SELECT	A.[ID акції] AS [s],
+			A.[Назва товару] AS [s],
+			A.[ID розділу] AS [s],
+			A.[Дата початку] AS [s],
+			A.[Дата кінця] AS [s]
+	FROM [Акційні товари] A
+	WHERE A.[Назва товару] LIKE ('%' + @Name + '%') AND
+	(A.[Дата початку] >= @Start AND A.[Дата кінця] <= @End)
+
+EXEC AllPromotionsSpecSectionInSpecPeriod 'Ноутбук','02.02.2021','02.02.2023'
+
+DROP PROC AllPromotionsSpecSectionInSpecPeriod
