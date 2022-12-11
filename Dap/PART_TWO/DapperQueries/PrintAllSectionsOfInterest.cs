@@ -5,7 +5,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
-// Відобразити кількість покупців у кожному місті
+// Відобразити всі розділи, у яких зацікавлені
 internal class PrintAllSectionsOfInterest : IQuery
 {
     public Task Print(SqlConnection connection)
