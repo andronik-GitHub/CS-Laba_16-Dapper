@@ -11,7 +11,7 @@ internal class MAIN
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8; // Для відображення кирилиці
 
-        await CREATE.Create();
+        //await CREATE.Create();
         await NewConnection.Connection();
 
 
