@@ -656,3 +656,8 @@ EXEC AllPromotionsForSpecBuyer 'Веркаш'
 
 DROP PROC AllPromotionsForSpecBuyer
 
+
+
+-- Відобразити топ-3 країн за кількістю покупців
+SELECT (B.[ID покупця]), B.[ID країни]
+FROM [Покупці] B

@@ -228,5 +228,24 @@ internal class CreateProcedures
         {
             Console.WriteLine(e.Message);
         }
+
+        // Створення процедури [TopThreeCountryByCountBuyers]
+        // Відобразити топ-3 країн за кількістю покупців
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE TopThreeCountryByCountBuyers
+                AS
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [TopThreeCountryByCountBuyers] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 }
