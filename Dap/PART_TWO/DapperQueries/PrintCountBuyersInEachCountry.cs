@@ -12,8 +12,10 @@ internal class PrintCountBuyersInEachCountry : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            foreach (var t in db.Query<CountCountry>("EXEC CountBuyersInEachCountry").ToList()) // виклик процедури
-                Console.WriteLine(t.Count + " " + t.NameCountry);
+            db.Query<CountCountry>("EXEC CountBuyersInEachCountry")
+                .ToList() // результат запиту в форматі List<T>
+                // По-елементно перебираю результат
+                .ForEach(t => Console.WriteLine(t.Count + " " + t.NameCountry));
         }
 
         return Task.CompletedTask;

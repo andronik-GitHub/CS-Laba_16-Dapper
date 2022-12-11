@@ -12,8 +12,10 @@ internal class PrintAllSectionsOfInterest : IQuery
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
-            foreach (var t in db.Query<AllSectionsOfInterest>("EXEC AllSectionsOfInterest").ToList()) // виклик процедури
-                Console.WriteLine(t.ID_Section + " " + t.NameSection);
+            db.Query<AllSectionsOfInterest>("EXEC AllSectionsOfInterest")
+                .ToList() // результат запиту в форматі List<T>
+                // По-елементно перебираю результат
+                .ForEach(t => Console.WriteLine(t.ID_Section + " " + t.NameSection));
         }
 
         return Task.CompletedTask;

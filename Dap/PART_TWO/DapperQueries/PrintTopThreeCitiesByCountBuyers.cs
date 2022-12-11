@@ -13,7 +13,8 @@ internal class PrintTopThreeCitiesByCountBuyers : IQuery
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
             db.Query<TopCityByCountBuyers>("EXEC TopThreeCitiesByCountBuyers")
-                .ToList()
+                .ToList() // результат запиту в форматі List<T>
+                // По-елементно перебираю результат
                 .ForEach(t => Console.WriteLine($"{t.ID_City} {t.Name,-30} {t.ID_Country} {t.NumCount}"));
         }
 
