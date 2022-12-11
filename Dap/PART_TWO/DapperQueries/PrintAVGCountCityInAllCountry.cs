@@ -40,7 +40,7 @@ internal class PrintAVGCountCityInAllCountry : IQuery
             var City = (double)cmd.Parameters["@City"].Value; //  кількість міст
             var Country = (double)cmd.Parameters["@Country"].Value; //  кількість країн
 
-            Console.WriteLine("Середня кількість міст по всіх країнах:" + (City / Country));
+            Console.WriteLine("Середня кількість міст по всіх країнах: " + (City / Country));
         }
     }
 }

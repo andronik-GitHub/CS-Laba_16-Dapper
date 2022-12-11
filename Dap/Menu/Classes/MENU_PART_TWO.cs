@@ -59,6 +59,7 @@ internal class MENU_PART_TWO : IMenu
                     break;
                 case ("5"):
                     Console.WriteLine();
+                    await PRINT_QUERIES.Print(new PrintAllSectionsOfInterest(),connection);
                     break;
                 case ("6"):
                     Console.WriteLine();

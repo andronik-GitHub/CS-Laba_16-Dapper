@@ -10,7 +10,7 @@ internal class CreateProcedures
     public static async Task Create(SqlConnection connection)
     {
         string query = ""; // для код запиту
-        var command = new SqlCommand(query,connection); // для виконування команд
+        var command = new SqlCommand(query, connection); // для виконування команд
 
         // Створення процедури [CountBuyersInEachCity]
         // Відобразити кількість покупців у кожному місті
@@ -106,6 +106,29 @@ internal class CreateProcedures
 
             await command.ExecuteNonQueryAsync();
             Console.WriteLine("Процедуру [AVGCountCityInAllCountry] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        // Створення процедури [AllSectionsOfInterest]
+        // Відобразити всі розділи, у яких зацікавлені
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE AllSectionsOfInterest
+                AS
+                    SELECT A.[ID розділу] AS ID_Section, A.[Назва розділу] AS NameSection
+                    FROM [Розділи товарів] A,[Зацікавлені розділи] B
+                    WHERE A.[ID розділу] = B.[ID розділу]
+                    GROUP BY A.[Назва розділу], A.[ID розділу]
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [AllSectionsOfInterest] створено успішно");
         }
         catch (SqlException e)
         {
