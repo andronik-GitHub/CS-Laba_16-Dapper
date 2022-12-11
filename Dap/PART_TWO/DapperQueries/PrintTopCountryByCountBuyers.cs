@@ -6,18 +6,16 @@ using System.Data;
 using System.Threading.Tasks;
 
 // Відобразити топ-3 країн за кількістю покупців
-internal class PrintTopThreeCountryByCountBuyers : IQuery
+internal class PrintTopCountryByCountBuyers : IQuery
 {
     public Task Print(SqlConnection connection)
     {
         using (IDbConnection db = new SqlConnection(connection.ConnectionString))
         {
             foreach (var t in db.Query<TopCountryByCountBuyers>("EXEC TopThreeCountryByCountBuyers").ToList()) // виклик процедури
-                Console.WriteLine($"{t.ID_Country} {t.Name, -30} {t.NumCount}");
+                Console.WriteLine($"{t.ID_Country} {t.Name,-30} {t.NumCount}");
         }
 
         return Task.CompletedTask;
     }
 }
-
-record class TopCountryByCountBuyers(int ID_Country, string Name, int NumCount);
