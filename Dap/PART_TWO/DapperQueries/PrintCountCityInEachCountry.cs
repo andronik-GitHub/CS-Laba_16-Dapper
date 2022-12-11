@@ -5,8 +5,8 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
-// Відобразити кількість покупців у кожній країні
-internal class PrintCountBuyersInEachCountry : IQuery
+// Відобразити кількість міст у кожній країні
+internal class PrintCountCityInEachCountry : IQuery
 {
     public Task Print(SqlConnection connection)
     {
@@ -19,7 +19,7 @@ internal class PrintCountBuyersInEachCountry : IQuery
                 CommandType = CommandType.StoredProcedure
             };
 
-            foreach (var t in db.Query<CountCountry>("EXEC CountBuyersInEachCountry").ToList()) // виклик процедури
+            foreach (var t in db.Query<CountCityInEachCountry>("EXEC CountCityInEachCountry").ToList()) // виклик процедури
                 Console.WriteLine(t.Count + " " + t.NameCountry);
         }
 
@@ -27,4 +27,4 @@ internal class PrintCountBuyersInEachCountry : IQuery
     }
 }
 
-record class CountCountry(int Count, string NameCountry);
+record class CountCityInEachCountry(int Count, string NameCountry);
