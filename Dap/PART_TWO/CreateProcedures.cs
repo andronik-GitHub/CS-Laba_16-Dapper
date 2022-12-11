@@ -134,5 +134,28 @@ internal class CreateProcedures
         {
             Console.WriteLine(e.Message);
         }
+
+        // Створення процедури [SpecificBuyerInSpecificContry]
+        // Відобразити конкретного покупця конкретної країни
+        try
+        {
+            query =
+            @"
+                CREATE PROCEDURE AllSectionsOfInterest
+                AS
+                    SELECT A.[ID розділу] AS ID_Section, A.[Назва розділу] AS NameSection
+                    FROM [Розділи товарів] A,[Зацікавлені розділи] B
+                    WHERE A.[ID розділу] = B.[ID розділу]
+                    GROUP BY A.[Назва розділу], A.[ID розділу]
+            ";
+            command.CommandText = query;
+
+            await command.ExecuteNonQueryAsync();
+            Console.WriteLine("Процедуру [AllSectionsOfInterest] створено успішно");
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 }
