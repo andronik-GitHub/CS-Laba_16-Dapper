@@ -17,7 +17,7 @@ internal class PrintAllPromotionsSpecSectionInSpecPeriod : IQuery
             string? name = Console.ReadLine();
 
             Console.Write("Введіть проміжок часу[mm.dd.yyyy:mm.dd.yyyy]: ");
-            string[]? time = Console.ReadLine()?.Split(':');
+            string[]? time = Console.ReadLine()?.Split(':',' ');
             Console.WriteLine();
 
             
