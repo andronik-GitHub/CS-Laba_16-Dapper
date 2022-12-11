@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
+// Створення процедур
 internal class CreateProcedures
 {
     public static async Task Create(SqlConnection connection)
