@@ -6,7 +6,7 @@ using System.Data;
 using System.Diagnostics.Metrics;
 using System.Threading.Tasks;
 
-// Відобразити конкретного покупця конкретної країни
+// Відобразити всі акції товару конкретного розділу за вказаний проміжок часу
 internal class PrintAllPromotionsSpecSectionInSpecPeriod : IQuery
 {
     public Task Print(SqlConnection connection)
